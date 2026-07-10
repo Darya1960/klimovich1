@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лаба 3 — Векторный пакет</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Лабораторная работа №3</h1>
+            <p class="subtitle">Пакет для работы с векторами «VectorMath»</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="index.html">🏠 Главная</a>
+            <a href="lab1.html">🎨 Лаба 1: RGB-шар</a>
+            <a href="lab2.html">🎬 Лаба 2: API (фильмы)</a>
+            <a href="lab3.html" class="active">📐 Лаба 3: Векторы</a>
+            <a href="lab4.html">💻 Лаба 4: Сайт</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+
+            <section>
+                <h2>Описание</h2>
+                <p>
+                    Разработан пакет <code>VectorMath</code>, содержащий функции для выполнения
+                    основных операций над векторами:
+                </p>
+                <ul>
+                    <li><code>VecAdd</code> — сложение</li>
+                    <li><code>VecSub</code> — вычитание</li>
+                    <li><code>VecDot</code> — скалярное произведение</li>
+                    <li><code>VecCross</code> — векторное произведение (3D)</li>
+                    <li><code>VecNorm</code> — длина вектора</li>
+                    <li><code>VecAngle</code> — угол между векторами</li>
+                    <li><code>VecScalar</code> — умножение на скаляр</li>
+                </ul>
+                <p>
+                    Каждая функция имеет три режима работы:
+                </p>
+                <ul>
+                    <li><strong>ind = 0</strong> — подробное решение с пояснениями</li>
+                    <li><strong>ind = 1</strong> — только результат</li>
+                    <li><strong>ind = 2</strong> — графическая визуализация</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Код</h2>
+                <div class="code-block">
+                    <span class="comment">(* Загрузка пакета *)</span>
+                    Needs["VectorMath`"]
+
+                    <span class="comment">(* Сложение векторов с подробным выводом *)</span>
+                    VecAdd[{1, 2}, {3, 4}, 0]
+
+                    <span class="comment">(* Длина вектора с визуализацией *)</span>
+                    VecNorm[{3, 4}, 2]
+
+                    <span class="comment">(* Угол между векторами *)</span>
+                    VecAngle[{1, 0}, {0, 1}, 0]
+                </div>
+            </section>
+
+            <section>
+                <h2>Результат</h2>
+
+                <div class="result-block">
+                    Сложение векторов<br />
+                    Вектор 1: {1, 2}<br />
+                    Вектор 2: {3, 4}<br />
+                    Результат: {4, 6}
+                </div>
+
+                <!-- СЮДА ВСТАВЬ КАРТИНКУ! -->
+                <div class="image-placeholder">
+                    <p>📊 <strong>Визуализация сложения векторов:</strong></p>
+                    <p><code>images/lab3_vector_add.png</code></p>
+                    <img src="images/lab3_vector_add.png" alt="Визуализация сложения векторов" style="max-width:100%; margin-top:10px;" />
+                </div>
+
+                <!-- СЮДА ВСТАВЬ КАРТИНКУ! -->
+                <div class="image-placeholder">
+                    <p>📊 <strong>Визуализация длины вектора:</strong></p>
+                    <p><code>images/lab3_vector_norm.png</code></p>
+                    <img src="images/lab3_vector_norm.png" alt="Визуализация длины вектора" style="max-width:100%; margin-top:10px;" />
+                </div>
+            </section>
+
+            <section>
+                <a href="index.html" class="btn">← На главную</a>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Минск, 2026</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лаба 1 — RGB-шар</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Лабораторная работа №1</h1>
+            <p class="subtitle">Визуализация RGB-цветового пространства</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="index.html">🏠 Главная</a>
+            <a href="lab1.html" class="active">🎨 Лаба 1: RGB-шар</a>
+            <a href="lab2.html">🎬 Лаба 2: API (фильмы)</a>
+            <a href="lab3.html">📐 Лаба 3: Векторы</a>
+            <a href="lab4.html">💻 Лаба 4: Сайт</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+
+            <section>
+                <h2>Описание</h2>
+                <p>
+                    Создана интерактивная 3D-модель, отображающая все возможные RGB-цвета
+                    как трёхмерный шар в пространстве.
+                </p>
+                <p>
+                    <strong>Математическая модель:</strong>
+                    Каждая точка имеет координаты (R, G, B), где R, G, B ∈ [0, 255].
+                    Центр RGB-куба находится в точке (127.5, 127.5, 127.5) — это белый цвет.
+                </p>
+                <p>
+                    <strong>Управление:</strong>
+                </p>
+                <ul>
+                    <li><strong>шаг (step):</strong> определяет количество отображаемых цветов</li>
+                    <li><strong>размер шариков (size):</strong> визуальная плотность модели</li>
+                </ul>
+                <p>
+                    При <code>step = 32</code> получается 729 цветов.
+                    При <code>step = 16</code> — 4913 цветов.
+                </p>
+            </section>
+
+            <section>
+                <h2>Код</h2>
+                <div class="code-block">
+                    <span class="comment">(* Генерация точек *)</span>
+                    points = Flatten[Table[{r, g, b}, {r, 0, 255, step}, {g, 0, 255, step}, {b, 0, 255, step}], 2];
+
+                    <span class="comment">(* Сдвиг к центру *)</span>
+                    center = {127.5, 127.5, 127.5};
+                    shiftedPoints = # - center & /@ points;
+
+                    <span class="comment">(* Визуализация *)</span>
+                    Graphics3D[
+                      Table[
+                        {
+                          RGBColor[points[[i, 1]]/255, points[[i, 2]]/255, points[[i, 3]]/255],
+                          Sphere[shiftedPoints[[i]], size]
+                        },
+                        {i, Length[points]}
+                      ],
+                      PlotRange -> {{-130, 130}, {-130, 130}, {-130, 130}},
+                      Axes -> True,
+                      AxesLabel -> {"R", "G", "B"},
+                      ImageSize -> {450, 400}
+                    ]
+                </div>
+            </section>
+
+            <section>
+                <h2>Результат</h2>
+
+                <!-- СЮДА ВСТАВЬ КАРТИНКУ! -->
+                <div class="image-placeholder">
+                    <p>🎨 <strong>RGB-шар (step = 32, size = 2):</strong></p>
+                    <p><code>images/lab1_rgb_sphere.png</code></p>
+                    <img src="images/lab1_rgb_sphere.png" alt="RGB-шар" style="max-width:100%; margin-top:10px;" />
+                </div>
+
+                <!-- СЮДА ВСТАВЬ КАРТИНКУ! -->
+                <div class="image-placeholder">
+                    <p>🎨 <strong>RGB-шар (step = 16, size = 1.5):</strong></p>
+                    <p><code>images/lab1_rgb_sphere_dense.png</code></p>
+                    <img src="images/lab1_rgb_sphere_dense.png" alt="RGB-шар плотный" style="max-width:100%; margin-top:10px;" />
+                </div>
+            </section>
+
+            <section>
+                <a href="index.html" class="btn">← На главную</a>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Минск, 2026</p>
+        </div>
+    </footer>
+
+</body>
+</html>

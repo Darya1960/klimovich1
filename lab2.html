@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лаба 2 — API фильмы</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Лабораторная работа №2</h1>
+            <p class="subtitle">Поиск фильмов через OMDB API</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="index.html">🏠 Главная</a>
+            <a href="lab1.html">🎨 Лаба 1: RGB-шар</a>
+            <a href="lab2.html" class="active">🎬 Лаба 2: API (фильмы)</a>
+            <a href="lab3.html">📐 Лаба 3: Векторы</a>
+            <a href="lab4.html">💻 Лаба 4: Сайт</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+
+            <section>
+                <h2>Описание</h2>
+                <p>
+                    Разработано приложение для поиска информации о фильмах через OMDB API.
+                    Функция <code>SearchMovies</code> находит информацию по названию:
+                </p>
+                <ul>
+                    <li>Название фильма</li>
+                    <li>Год выпуска</li>
+                    <li>Рейтинг IMDB</li>
+                    <li>Актёры</li>
+                    <li>Сюжет</li>
+                    <li>Постер</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Код</h2>
+                <div class="code-block">
+                    <span class="comment">(* Поиск фильма *)</span>
+                    SearchMovies[title_String] := Module[
+                      {url, data},
+                      url = "http://www.omdbapi.com/?apikey=144fcc36&t=" <> StringReplace[title, " " -> "+"];
+                      data = ImportString[URLRead[HTTPRequest[url, &lt;|"Method" -> "GET"|&gt;], "Body"], "RawJSON"];
+                      {
+                        "Название" -> data["Title"],
+                        "Год" -> data["Year"],
+                        "Рейтинг IMDB" -> data["imdbRating"],
+                        "Актёры" -> data["Actors"],
+                        "Сюжет" -> data["Plot"],
+                        "Постер" -> data["Poster"]
+                      }
+                    ]
+
+                    <span class="comment">(* Пример использования *)</span>
+                    movie = SearchMovies["The Matrix"]
+                </div>
+            </section>
+
+            <section>
+                <h2>Результат</h2>
+
+                <div class="result-block">
+                    Название: The Matrix<br />
+                    Год: 1999<br />
+                    Рейтинг IMDB: 8.7/10<br />
+                    Актёры: Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss<br />
+                    Сюжет: When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth—the life he knows is the elaborate deception of an evil cyber-intelligence.
+                </div>
+
+                <!-- СЮДА ВСТАВЬ КАРТИНКУ! -->
+                <div class="image-placeholder">
+                    <p>🎬 <strong>Информация о фильме:</strong></p>
+                    <p><code>images/lab2_movie_info.png</code></p>
+                    <img src="images/lab2_movie_info.png" alt="Информация о фильме" style="max-width:100%; margin-top:10px;" />
+                </div>
+
+
+                <div class="image-placeholder">
+                    <p>🎬 <strong>Постер фильма:</strong></p>
+                    <p><code>images/lab2_movie_poster.png</code></p>
+                    <img src="images/lab2_movie_poster.png" alt="Постер фильма" style="max-width:100%; margin-top:10px;" />
+                </div>
+            </section>
+
+            <section>
+                <a href="index.html" class="btn">← На главную</a>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Минск, 2026</p>
+        </div>
+    </footer>
+
+</body>
+</html>
